@@ -2,7 +2,8 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const mongoose = require('mongoose');
-let Article = require('./models/md-article');
+let Article = require('./models/article');
+const bodyParser = require('body-parser');
 
 // Initializing express
 const app = express();
@@ -28,6 +29,12 @@ db.on('error', (err) => {
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
+// body-parser Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+
 
 // setup public folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -45,7 +52,21 @@ app.get('/', (req, res) => {
 
 app.get('/articles/add/', (req, res) => {
     res.render('add_article', { title: "Add Article" })
-})
+});
+
+app.post('/articles/add/', (req, res) => {
+    let article = new Article();
+    article.title = req.body.title;
+    article.author = req.body.author;
+    article.body = req.body.body;
+    console.log(req.body.author);
+    article.save((err) => {
+        if (err) {
+            return err;
+        }
+        res.redirect('/');
+    })
+});
 
 
 
