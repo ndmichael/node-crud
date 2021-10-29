@@ -4,17 +4,17 @@
             <form action="/articles/add/" method="POST">
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class=" form-control form-control-lg" />
+                    <input type="text" name="title" class=" form-control form-control-lg" />
                 </div>
                 <div class="form-group">
                     <label for="author">Author</label>
-                    <input type="text" class=" form-control form-control-lg" />
+                    <input type="text" name="author" class=" form-control form-control-lg" />
                 </div>
                 <div class="form-group pt-4">
                     <textarea class=" form-control" rows="7"></textarea>
                 </div>
                 <div class="form-group col-8 pt-4">
-                    <input type="submit" class=" btn btn-primary" value="Add Article">
+                    <input type="submit" name="body" class=" btn btn-primary" value="Add Article">
                 </div>
             </form>
         </div>
