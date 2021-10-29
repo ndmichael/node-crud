@@ -1,9 +1,28 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const mongoose = require('mongoose');
+let Article = require('./models/md-article');
 
 // Initializing express
 const app = express();
+
+// setting up mongoose orm connection to the database
+mongoose.connect("mongodb://localhost/nodecrud");
+let db = mongoose.connection;
+
+// Check for connection
+db.once('open', () => {
+    console.log("connected to mongodb");
+    return;
+});
+
+
+// check for db errors
+db.on('error', (err) => {
+    console.log(err);
+    return;
+})
 
 // Setting handlebars middlewares
 app.engine('handlebars', exphbs());
@@ -15,9 +34,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // index page route
 app.get('/', (req, res) => {
-    res.render("index");
+    Article.find({}, (err, articles) => {
+        if (err) {
+            return err;
+        }
+        res.render("index", { articles: articles, title: "Home Page" });
+    }).lean();
 });
 
+
+app.get('/articles/add/', (req, res) => {
+    res.render('add_article', { title: "Add Article" })
+})
 
 
 
