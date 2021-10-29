@@ -1,0 +1,28 @@
+{
+    "name": "crud",
+    "version": "1.0.0",
+    "description": "A node crud application",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node app",
+        "dev": "nodemon run dev"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ndmichael/node-crud.git"
+    },
+    "author": "Michael codesmith Ukeje",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ndmichael/node-crud/issues"
+    },
+    "homepage": "https://github.com/ndmichael/node-crud#readme",
+    "devDependencies": {
+        "nodemon": "^2.0.14"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "express-handlebars": "^5.3.4"
+    }
+}
