@@ -1,7 +1,14 @@
 <section class="container">
     <section class="row">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 offset-md-3 p-3">
             <h1>Testing Handle bars setups</h1>
+            {{title}}
         </div>
+        {{#each articles }}
+        <div class="col-12 col-md-6 offset-md-3 my-2 p-3 shadow-sm bg-white rounded">
+            <h2>{{this.title}}</h2>
+            <p>Written by: <small class=" text-muted">{{this.author}}</small></p>
+        </div>
+        {{/each}}
     </section>
 </section>
