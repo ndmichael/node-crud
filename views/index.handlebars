@@ -6,8 +6,11 @@
         </div>
         {{#each articles }}
         <div class="col-12 col-md-6 offset-md-3 my-2 p-3 shadow-sm bg-white rounded">
-            <h4>{{this.title}}</h4>
-            <p>Written by: <small class=" text-muted">{{this.author}}</small></p>
+            <a href="/article/{{this._id}}/">
+                <h4>{{this.title}}</h4>
+                <h6>{{this._id}}</h6>
+                <p>Written by: <small class=" text-muted">{{this.author}}</small></p>
+            </a>
         </div>
         {{/each}}
     </section>
