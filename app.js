@@ -50,6 +50,17 @@ app.get('/', (req, res) => {
 });
 
 
+app.get('/article/:id', (req, res) => {
+    Article.findById(req.params.id, (err, article) => {
+        if (err) return err;
+        res.render('article_detail', {
+            title: `${article.title}`,
+            article: article
+        })
+    }).lean();
+});
+
+
 app.get('/articles/add/', (req, res) => {
     res.render('add_article', { title: "Add Article" })
 });
@@ -59,7 +70,6 @@ app.post('/articles/add/', (req, res) => {
     article.title = req.body.title;
     article.author = req.body.author;
     article.body = req.body.body;
-    console.log(req.body.author);
     article.save((err) => {
         if (err) {
             return err;
@@ -67,7 +77,6 @@ app.post('/articles/add/', (req, res) => {
         res.redirect('/');
     })
 });
-
 
 
 // initialize the list
